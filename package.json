@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  },
+  "scripts": {
+    "dev": "python3 startup.py dev",
+    "prod": "gunicorn startup:app"
+  }
+}
