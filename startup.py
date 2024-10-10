@@ -128,19 +128,34 @@ if __name__ == "__main__":
                         print(f"Received rawtx message on {key}")
                         # Receive the next message which is the raw transaction in hex
                         raw_tx_message = socket.recv(flags=zmq.NOBLOCK)
-                        print(f"Raw transaction: {raw_tx_message.hex()}")
+                        node_tx_index = socket.recv(flags=zmq.NOBLOCK)
+                        print(f"Raw transaction received: {len(raw_tx_message.hex())}: {int.from_bytes(node_tx_index, byteorder='little')}")
                     elif message == bytes("hashtx", "utf-8"):
                         print(f"Received hashtx message on {key}")
                         # Receive the next message which is the raw transaction in hex
                         hashtx_message = socket.recv(flags=zmq.NOBLOCK)
-                        print(f"Hash transaction: {hashtx_message.hex()}")
+                        node_tx_index = socket.recv(flags=zmq.NOBLOCK)
+                        print(f"Hash transaction received: {len(hashtx_message.hex())}: {int.from_bytes(node_tx_index, byteorder='little')}")
                     elif message == bytes("rawblock", "utf-8"):
                         print(f"Received rawblock message on {key}")
                         # Receive the next message which is the raw block in hex
                         rawblock_message = socket.recv(flags=zmq.NOBLOCK)
-                        print(f"Raw block: {rawblock_message.hex()}")
+                        node_block_index = socket.recv(flags=zmq.NOBLOCK)
+                        print(f"Raw block received: {len(rawblock_message.hex())}: {int.from_bytes(node_block_index, byteorder='little')}")
+                    elif message == bytes("sequence", "utf-8"):
+                        print(f"Received sequence message on {key}")
+                        # Receive the next message which is the sequence in hex
+                        sequence_message = socket.recv(flags=zmq.NOBLOCK)
+                        print(f"Sequence: {sequence_message.hex()}")
+                    elif message == bytes("hashblock", "utf-8"):
+                        print(f"Received hashblock message on {key}")
+                        # Receive the next message which is the hashblock in hex
+                        hashblock_message = socket.recv(flags=zmq.NOBLOCK)
+                        node_block_index = socket.recv(flags=zmq.NOBLOCK)
+                        print(f"Hash block received: {len(hashblock_message.hex())}: {int.from_bytes(node_block_index, byteorder='little')}")
                     else:
-                        print(f"Received sequence message on {key}: {int.from_bytes(message, byteorder='little')}")
+                        print(f"Received unknown message on {key}: {int.from_bytes(message, byteorder='little')}")
+                        
                 except zmq.Again:
                     # No message was ready to be received
                     continue
