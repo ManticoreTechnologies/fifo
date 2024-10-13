@@ -6,3 +6,4 @@ from .orders import get_orderbook
 
 from .account import register_address
 from .account import get_account
+from .account import credit_account

@@ -1,0 +1,19 @@
+{
+    "asm": "OP_DUP OP_HASH160 3c31c5bb776c15ba03f2fb88700c117b618e82de OP_EQUALVERIFY OP_CHECKSIG OP_EVR_ASSET 36657672720558454e4f4e0076dd4101000000ff0112209ef32001260ce1d63225b4e42b03a3668d692deee2c736daaa1cbcc6e2c06de275",
+    "reqSigs": 1,
+    "type": "reissue_asset",
+    "asset": {
+      "name": "XENON",
+      "amount": 54.00000000,
+      "reissuable": 1,
+      "ipfs_hash": "QmZ389U2bZHuaMWpe6Tr5CCWRVRD82tsYozpSCFNBrktG9"
+    },
+    "addresses": [
+      "ENeBfLhUMMQyziHaYkpDZxa4kaH8Zofzkp"
+    ],
+    "p2sh": "e8znkZAFbbY2fiF8jgqSXQnN22QvM6GP44",
+    "asset_name": "XENON",
+    "amount": 54.00000000,
+    "reissuable": true,
+    "new_ipfs_hash": "QmZ389U2bZHuaMWpe6Tr5CCWRVRD82tsYozpSCFNBrktG9"
+  }

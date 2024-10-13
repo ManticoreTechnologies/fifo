@@ -1,0 +1,3 @@
+from .decoderawtransaction import decoderawtransaction
+from .decodescript import decodescript
+from .decodecoinbasetransaction import decodecoinbasetransaction

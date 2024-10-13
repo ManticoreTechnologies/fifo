@@ -21,7 +21,7 @@ def register_address(address):
     account = {
         "address": new_address,
         "balances": {"evr": 0},
-        "orders": {} # order_id: order
+        "orders": {"bids": {}, "asks": {}} # order_id: order
     }
 
     # Save the account to Redis

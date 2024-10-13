@@ -1,0 +1,92 @@
+{
+    "txid": "18170dacac875ab8a9b7ec05c686643d72ae49d4d0355e5f05397a6177d7a3f0",
+    "hash": "18170dacac875ab8a9b7ec05c686643d72ae49d4d0355e5f05397a6177d7a3f0",
+    "version": 2,
+    "size": 520,
+    "vsize": 520,
+    "locktime": 1020271,
+    "vin": [
+      {
+        "txid": "411f2f24dd9d3711f51a20b2ac72e787dd8e2be9e3fbb46b4f098a5314137c71",
+        "vout": 0,
+        "scriptSig": {
+          "asm": "30440220579d3c0db1c9cf5b6b5b0f42eaa60149db3295273bc33c432bbc740935cbac29022037fed597faf759bae467b7932a5da2addaabd5f65dcd03b375d5b66621d135df[ALL] 03507f4e0d43202acf10071aecc3dd9104bf5d3f406df42d117af310de56f135de",
+          "hex": "4730440220579d3c0db1c9cf5b6b5b0f42eaa60149db3295273bc33c432bbc740935cbac29022037fed597faf759bae467b7932a5da2addaabd5f65dcd03b375d5b66621d135df012103507f4e0d43202acf10071aecc3dd9104bf5d3f406df42d117af310de56f135de"
+        },
+        "sequence": 4294967294
+      },
+      {
+        "txid": "cec6143a20ff48c0fb3e2e32e9e287a6ce4bcae36af2b8eaef6298c3adb624b3",
+        "vout": 2,
+        "scriptSig": {
+          "asm": "3045022100b01f2b6c1249b302dd56f359e298178f57c4a410e0661307699cff609fa04ac002200e9c4e22ede5f236f9e2c4928861e22236905afb85a6debad96f3c45607c2dea[ALL] 03ff787648ffbdcf44a64c56cc4e5f32572537a10327d64775c7d866e62ffcbad0",
+          "hex": "483045022100b01f2b6c1249b302dd56f359e298178f57c4a410e0661307699cff609fa04ac002200e9c4e22ede5f236f9e2c4928861e22236905afb85a6debad96f3c45607c2dea012103ff787648ffbdcf44a64c56cc4e5f32572537a10327d64775c7d866e62ffcbad0"
+        },
+        "sequence": 4294967294
+      }
+    ],
+    "vout": [
+      {
+        "value": 100.00000000,
+        "n": 0,
+        "scriptPubKey": {
+          "asm": "OP_DUP OP_HASH160 9c8c16192e5fd0f278703982a5e50d97c2f22826 OP_EQUALVERIFY OP_CHECKSIG",
+          "hex": "76a9149c8c16192e5fd0f278703982a5e50d97c2f2282688ac",
+          "reqSigs": 1,
+          "type": "pubkeyhash",
+          "addresses": [
+            "EXReissueAssetXXXXXXXXXXXXXXY1ANQH"
+          ]
+        }
+      },
+      {
+        "value": 0.00000000,
+        "n": 1,
+        "scriptPubKey": {
+          "asm": "OP_DUP OP_HASH160 f75acf93906f8d4d96b83674cbd3d033050201a2 OP_EQUALVERIFY OP_CHECKSIG OP_EVR_ASSET 13657672740658454e4f4e2100e1f5050000000075",
+          "hex": "76a914f75acf93906f8d4d96b83674cbd3d033050201a288acc013657672740658454e4f4e2100e1f5050000000075",
+          "reqSigs": 1,
+          "type": "transfer_asset",
+          "asset": {
+            "name": "XENON!",
+            "amount": 1.00000000
+          },
+          "addresses": [
+            "EfhoBcbL1zb7sVuBuWWuCYDwqF54VYgHf1"
+          ]
+        }
+      },
+      {
+        "value": 899.34710000,
+        "n": 2,
+        "scriptPubKey": {
+          "asm": "OP_DUP OP_HASH160 f75acf93906f8d4d96b83674cbd3d033050201a2 OP_EQUALVERIFY OP_CHECKSIG",
+          "hex": "76a914f75acf93906f8d4d96b83674cbd3d033050201a288ac",
+          "reqSigs": 1,
+          "type": "pubkeyhash",
+          "addresses": [
+            "EfhoBcbL1zb7sVuBuWWuCYDwqF54VYgHf1"
+          ]
+        }
+      },
+      {
+        "value": 0.00000000,
+        "n": 3,
+        "scriptPubKey": {
+          "asm": "OP_DUP OP_HASH160 3c31c5bb776c15ba03f2fb88700c117b618e82de OP_EQUALVERIFY OP_CHECKSIG OP_EVR_ASSET 36657672720558454e4f4e0076dd4101000000ff0112209ef32001260ce1d63225b4e42b03a3668d692deee2c736daaa1cbcc6e2c06de275",
+          "hex": "76a9143c31c5bb776c15ba03f2fb88700c117b618e82de88acc036657672720558454e4f4e0076dd4101000000ff0112209ef32001260ce1d63225b4e42b03a3668d692deee2c736daaa1cbcc6e2c06de275",
+          "reqSigs": 1,
+          "type": "reissue_asset",
+          "asset": {
+            "name": "XENON",
+            "amount": 54.00000000,
+            "reissuable": 1,
+            "ipfs_hash": "QmZ389U2bZHuaMWpe6Tr5CCWRVRD82tsYozpSCFNBrktG9"
+          },
+          "addresses": [
+            "ENeBfLhUMMQyziHaYkpDZxa4kaH8Zofzkp"
+          ]
+        }
+      }
+    ]
+  }

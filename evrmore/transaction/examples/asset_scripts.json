@@ -1,0 +1,34 @@
+{
+    "scriptPubKey": {
+        "asm": "OP_DUP OP_HASH160 6f00b7b316eacccb25e5840e8c4bdcaa8c07ac08 OP_EQUALVERIFY OP_CHECKSIG OP_EVR_ASSET 1a657672710a4d414e5449464f52474500e1f5050000000000010075",
+        "hex": "76a9146f00b7b316eacccb25e5840e8c4bdcaa8c07ac0888acc01a657672710a4d414e5449464f52474500e1f5050000000000010075",
+        "reqSigs": 1,
+        "type": "new_asset",
+        "asset": {
+          "name": "MANTIFORGE",
+          "amount": 1.00000000,
+          "expire_time": 3,
+          "units": 0,
+          "reissuable": 1
+        },
+        "scriptPubKey": {
+            "asm": "OP_DUP OP_HASH160 9fce23b5eab1ad3c1d6892ccb7f7c9247454df98 OP_EQUALVERIFY OP_CHECKSIG",
+            "hex": "76a9149fce23b5eab1ad3c1d6892ccb7f7c9247454df9888ac",
+            "reqSigs": 1,
+            "type": "pubkeyhash",
+            "addresses": [
+              "EXissueAssetXXXXXXXXXXXXXXXXYiYRBD"
+            ]
+          },
+          "scriptPubKey": {
+            "asm": "OP_DUP OP_HASH160 19b5dde0fa76f7febd02d04df10a1c66c1edfa10 OP_EQUALVERIFY OP_CHECKSIG OP_EVR_ASSET 17657672740a4d414e5449435241465400e1f5050000000075",
+            "hex": "76a91419b5dde0fa76f7febd02d04df10a1c66c1edfa1088acc017657672740a4d414e5449435241465400e1f5050000000075",
+            "reqSigs": 1,
+            "type": "transfer_asset",
+            "asset": {
+              "name": "MANTICRAFT",
+              "amount": 1.00000000
+            }
+          }
+    }
+}

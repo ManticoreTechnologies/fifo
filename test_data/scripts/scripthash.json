@@ -1,0 +1,8 @@
+{
+    "asm": "OP_HASH160 3ade040e5a03507435522b9d5542d6d063dcb1bb OP_EQUAL",
+    "reqSigs": 1,
+    "type": "scripthash",
+    "addresses": [
+      "e7Tkk3kjS9NjSYVX2Q8qzxXB1WKMRvea1j"
+    ]
+  }
