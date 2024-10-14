@@ -4,6 +4,6 @@
   },
   "scripts": {
     "dev": "python3 startup.py dev",
-    "prod": "gunicorn startup:app --bind 0.0.0.0:8001"
+    "prod": "gunicorn startup:app --bind 0.0.0.0:25565"
   }
 }

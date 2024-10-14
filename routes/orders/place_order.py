@@ -1,7 +1,8 @@
+from datetime import datetime
 from flask import jsonify, request
 from startup import app
 from database import save_order
-from utils import validate_data
+from utils import get_data_from_redis, validate_data
 from rpc import authenticate_message
 import uuid
 
@@ -28,6 +29,15 @@ def place_order():
     if not authenticated:
         return jsonify({"error": "Invalid signature"}), 401
 
+
+    # Get the account from Redis
+    account = get_data_from_redis(f"account:{address}")
+
+    # Check if the account is registered
+    if account is None:
+        return jsonify({"error": "Account not found"}), 404
+
+
     # Create the order 
     order = {
         "order_id": str(uuid.uuid4()),
@@ -35,7 +45,8 @@ def place_order():
         "symbol": symbol,
         "side": side,
         "price": price,
-        "quantity": quantity
+        "quantity": quantity,
+        "created_at": datetime.now().isoformat()
     }
 
     # Save the order to Redis
