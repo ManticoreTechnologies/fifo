@@ -2,32 +2,52 @@ import random
 from Market import Market
 from Order import Order
 from Price import Price
+from Database import Database  # Import the Database class
 #####
-symbol = "BTC-USDT" # The symbol of the market, this is used to identify the market and must be in this format "AAA...-BBB..."
-units = 0 # The number of units the market is divided into, 0-8 for example 8 would have pip size 0.00000001
+symbol = "BTC-USDT"  # The symbol of the market, this is used to identify the market and must be in this format "AAA...-BBB..."
+units = 0  # The number of units the market is divided into, 0-8 for example 8 would have pip size 0.00000001
 
+# Initialize the database
+db = Database()
 
-# Create a new market, This should be only done by admin and serialized into redis as a hashmap
-market = Market("BTCUSDT")
+# Check if the market already exists in the database
+market_exists = db.cursor.execute("SELECT 1 FROM market WHERE symbol = ?", (symbol.replace("-", ""),)).fetchone()
 
-# Populate with some bids only
-market.add_order(Order("address1", "BTCUSDT", "bid", 10000, 1, "order1"))
-market.add_order(Order("address2", "BTCUSDT", "bid", 10001, 1, "order2"))
-market.add_order(Order("address3", "BTCUSDT", "bid", 10002, 1, "order3"))
-market.add_order(Order("address4", "BTCUSDT", "bid", 10003, 1, "order4"))
-market.add_order(Order("address5", "BTCUSDT", "bid", 10004, 1, "order5"))
-market.add_order(Order("address6", "BTCUSDT", "bid", 10005, 1, "order6"))
+if not market_exists:
+    # Create a new market, This should be only done by admin and serialized into redis as a hashmap
+    market = Market("BTCUSDT")
 
-# Populate with some asks only, all higher than bids
-market.add_order(Order("address7", "BTCUSDT", "ask", 10006, 10, "order7"))
-market.add_order(Order("address8", "BTCUSDT", "ask", 10007, 1, "order8"))
-market.add_order(Order("address9", "BTCUSDT", "ask", 10008, 1, "order9"))
-market.add_order(Order("address10", "BTCUSDT", "ask", 10009, 1, "order10"))
+    # Populate with some bids only
+    market.add_order(Order("address1", "BTCUSDT", "bid", 10000, 1, "order1"))
+    market.add_order(Order("address2", "BTCUSDT", "bid", 10001, 1, "order2"))
+    market.add_order(Order("address3", "BTCUSDT", "bid", 10002, 1, "order3"))
+    market.add_order(Order("address4", "BTCUSDT", "bid", 10003, 1, "order4"))
+    market.add_order(Order("address5", "BTCUSDT", "bid", 10004, 1, "order5"))
+    market.add_order(Order("address6", "BTCUSDT", "bid", 10005, 1, "order6"))
 
-# Now test matching by placing a bid at 10006, this should fill both order 11 and order 7 since they are the same quantity
-market.add_order(Order("address11", "BTCUSDT", "bid", 10005, 10, "order11"))
-# Now test matching by placing a bid at 10006, this should fill both order 11 and order 7 since they are the same quantity
-market.add_order(Order("address12", "BTCUSDT", "ask", 10000, 1, "order12"))
+    # Populate with some asks only, all higher than bids
+    market.add_order(Order("address7", "BTCUSDT", "ask", 10006, 10, "order7"))
+    market.add_order(Order("address8", "BTCUSDT", "ask", 10007, 1, "order8"))
+    market.add_order(Order("address9", "BTCUSDT", "ask", 10008, 1, "order9"))
+    market.add_order(Order("address10", "BTCUSDT", "ask", 10009, 1, "order10"))
+
+    # Now test matching by placing a bid at 10006, this should fill both order 11 and order 7 since they are the same quantity
+    market.add_order(Order("address11", "BTCUSDT", "bid", 10005, 10, "order11"))
+    # Now test matching by placing a bid at 10006, this should fill both order 11 and order 7 since they are the same quantity
+    market.add_order(Order("address12", "BTCUSDT", "ask", 10000, 1, "order12"))
+
+    # Save the market to the database
+    db.cursor.execute("INSERT INTO market (symbol) VALUES (?)", (symbol.replace("-", ""),))
+    db.connection.commit()
+else:
+    # Load the existing market from the database
+    market = Market("BTCUSDT")
+    market.load_orders()  # Load orders from the database
+
+# Print filled orders
+print("\nFilled Orders:")
+for filled_order in market.filled_orders:
+    print(filled_order)
 
 # So when printing the order book it should have a gap at 10006
 market.pretty_print_order_book()
@@ -61,3 +81,6 @@ def interactive_order_placement(market):
 
 # Call the interactive function
 interactive_order_placement(market)
+
+# Close the database connection
+db.close()
