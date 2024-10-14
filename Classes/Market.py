@@ -118,7 +118,14 @@ class Market:
         return [self.prices[price] for price in self.prices if self.prices[price].side() == "ask"]
 
     def get_order_book(self):
-        return {price.price: price.get_total_quantity() for price in self.prices.values()}
+        # Return a dictionary with price, total quantity, and side for each price level
+        return {
+            price.price: {
+                "total_quantity": price.get_total_quantity(),
+                "side": price.side()
+            }
+            for price in self.prices.values()
+        }
 
     def pretty_print_order_book(self):
         order_book = self.get_order_book()
@@ -135,10 +142,20 @@ class Market:
             self._match_ask(order)
 
     def load_orders(self):
-        # Load orders from the database and add them to the market
+        # Load orders from the database and add them to the market without matching
         orders = self.db.load_orders(self.symbol)
         for order in orders:
-            self.add_order(order)
+            self._add_order_without_matching(order)
+
+    def _add_order_without_matching(self, order):
+        # Add an order to the market without attempting to match it
+        price = order.price
+        if price not in self.prices:
+            self.add_price(price)
+        
+        self.prices[price].add_order(order)
+        # Optionally, update the price level in the database if needed
+        self.db.save_price(price, self.symbol, self.prices[price].get_total_quantity())
 
     def __del__(self):
         # Ensure the database connection is closed when the Market object is deleted
